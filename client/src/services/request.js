@@ -15,4 +15,20 @@ Request.prototype.get = function (onComplete) {
   request.send();
 };
 
+Request.prototype.post = function (onComplete, payload) {
+  const request = new XMLHttpRequest();
+  request.open('POST', this.url);
+
+  request.setRequestHeader( 'Content-Type', 'application/json' );
+
+  request.addEventListener('load', function () {
+    if (request.status !== 201) return;
+    const response = JSON.parse( request.responseText )
+
+    onComplete( response )
+  })
+  const jsonPayload = JSON.stringify( payload )
+  request.send( jsonPayload )
+};
+
 module.exports = Request;

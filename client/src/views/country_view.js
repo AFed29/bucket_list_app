@@ -15,4 +15,16 @@ CountryView.prototype.renderSelect = function ( country) {
   countrySelect.appendChild(option);
 };
 
+CountryView.prototype.addCountryToBucketList = function ( country ) {
+  this.bucketListCountries.push( country );
+  this.renderBucketList( country );
+};
+
+CountryView.prototype.renderBucketList = function ( country ){
+  const bucketList = document.querySelector('#bucket-list') ;
+  const li = document.createElement('li');
+  li.textContent = country.name;
+  bucketList.appendChild(li);
+}
+
 module.exports = CountryView;
