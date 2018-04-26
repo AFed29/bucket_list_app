@@ -49,9 +49,19 @@ MongoClient.connect('mongodb://localhost:27017', function (err, client) {
     });
   });
 
+  server.delete('/api/bucketlist/countries', function (req, res) {
+    countriesCollection.deleteMany(function (err, result) {
+      if(err){
+        console.error(err);
+        res.status(500);
+        res.send();
+        return;
+      }
 
-  
-
+      res.status(204);
+      res.send();
+    });
+  });
 });
 
 server.listen(3000, function () {

@@ -21,12 +21,16 @@ const onCountrySelect = function(event) {
   const selectedCountryCode = event.target.value;
   const selectedCountry = countries.findByCode(selectedCountryCode);
 
-  bucketList.addCountry(selectedCountry, bucketListView.renderBucketList);
+  bucketList.addCountry(selectedCountry, bucketListView.addToBucketList);
 }
 
 const getBucketListCountriesComplete =  (bucketListCountries) =>{
   bucketListView.renderBucketList( bucketListCountries );
 };
+
+const onDeleteAllClicked = function () {
+  bucketList.deleteAll(bucketListView.clearBucketList);
+}
 
 const appStart = function () {
 
@@ -36,6 +40,9 @@ const appStart = function () {
 
   const countrySelect = document.querySelector('#country-select');
   countrySelect.addEventListener('change', onCountrySelect);
+
+  const deleteButton = document.querySelector('#delete-all');
+  deleteButton.addEventListener('click', onDeleteAllClicked);
 };
 
 document.addEventListener('DOMContentLoaded', appStart);

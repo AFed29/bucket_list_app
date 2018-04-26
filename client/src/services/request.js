@@ -31,4 +31,16 @@ Request.prototype.post = function (onComplete, payload) {
   request.send( jsonPayload )
 };
 
+Request.prototype.deleteAll = function (onComplete) {
+  const request = new XMLHttpRequest();
+  request.open('DELETE', this.url);
+
+  request.addEventListener('load', function () {
+    if (request.status !== 204) return;
+
+    onComplete( )
+  })
+  request.send( )
+};
+
 module.exports = Request;
