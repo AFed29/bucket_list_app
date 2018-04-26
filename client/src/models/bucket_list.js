@@ -6,10 +6,13 @@ const BucketList = function () {
 }
 
 BucketList.prototype.addCountry = function ( country, onComplete ) {
-  this.countries.push( country );
+
   const request = new Request(this.url);
-  request.post(onComplete, country);
-  console.log(this.countries);
+  console.log(country);
+  request.post(( country ) => {
+    this.countries.push( country );
+    onComplete(country);
+  }, country);
 };
 
 BucketList.prototype.getData = function (onComplete) {
